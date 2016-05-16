@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum AnimatonType {
+    case Rotation
+    case Translation
+}
+
+
 class QQMusicListCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
@@ -44,7 +50,25 @@ class QQMusicListCell: UITableViewCell {
         
     }
     
-    
+    //做动画
+    func beginAnimation(type: AnimatonType) -> () {
+        switch type {
+        case .Rotation:
+            self.layer.removeAnimationForKey("rotation")
+            let animation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+            animation.values = [M_PI * 0.25, 0]
+            animation.duration = 0.2
+            self.layer.addAnimation(animation, forKey: "rotation")
+            
+        case .Translation:
+            self.layer.removeAnimationForKey("translation")
+            let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            animation.values = [60, 0]
+            animation.duration = 0.2
+            self.layer.addAnimation(animation, forKey: "translation")
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
