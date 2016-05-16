@@ -9,68 +9,94 @@
 import UIKit
 
 class QQListTVC: UITableViewController {
-
+    
+    
+    var musicMs: [QQMusicModel] = [QQMusicModel]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //设置界面
+        
+        // 界面操作
         setUpInit()
+        
+        // 需要数据 -> 展示
+        
+        // 数据怎么获取, 抽成一个工具类
+        // 好处: 重用性高,
         
         QQMusicDataTool.getMusicList { (musicMs) in
             
+            // 展示数据
             print(musicMs)
+            self.musicMs = musicMs
+            
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-
+    
+    
+    
+    
+    
 }
 
-//数据显示
+
+// 数据展示
 extension QQListTVC {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 0
-    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
+        return musicMs.count
     }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = QQMusicListCell.cellWithTableView(tableView)
+        
+        // 取出模型
+        let musicM = musicMs[indexPath.row]
+        cell.musicM = musicM
+        
+        return cell
+        
+        
+    }
+    
     
 }
 
-//界面搭建
+// 界面搭建
 extension QQListTVC {
-
-    //提供一个方法用于设置界面搭建
-   private func setUpInit() -> () {
+    
+    
+    // 提供一个统一界面设置的方法, 供外界调用
+    private func setUpInit() {
+        
         setUpTableView()
         setUpNavigationBar()
+        
     }
     
-    //设置背景色
-    private func setUpTableView() -> () {
     
+    private func setUpTableView() -> () {
         let backView = UIImageView(image: UIImage(named: "QQListBack.jpg"))
-        
         tableView.backgroundView = backView
         
+        tableView.rowHeight = 60
+        
+        tableView.separatorStyle = .None
     }
     
-    //设置navbar
     private func setUpNavigationBar() -> () {
         navigationController?.navigationBarHidden = true
     }
     
-    //取消点击高亮状态
-     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    
-    return .LightContent
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
+    
 }
-
 

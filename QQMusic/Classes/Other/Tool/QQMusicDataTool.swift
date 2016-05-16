@@ -9,34 +9,36 @@
 import UIKit
 
 class QQMusicDataTool: NSObject {
-
-    //把数据模型传进来,返回一个字典模型
-    class func getMusicList(result: (musicMs: [QQMusicModel]) -> ()) {
+    
+    class func getMusicList(result: (musicMs: [QQMusicModel])->()) {
         
-        //从本地加载plist文件
-       guard let path = NSBundle.mainBundle().pathForResource("Musics.plist", ofType: nil)
-       else{
-        result(musicMs: [QQMusicModel]())
-        return
-        }
-        
-        //加载文件内容
-        guard let dicArray = NSArray(contentsOfFile: path) else {
-        result(musicMs: [QQMusicModel]())
+        // 从本地的plist文件加载
+        // 1. 获取文件的路径
+        guard let path = NSBundle.mainBundle().pathForResource("Musics.plist", ofType: nil) else {
+            result(musicMs: [QQMusicModel]())
             return
         }
         
-        //把字典转成模型
+        // 2. 加载文件内容 dic array
+        guard let dicArray = NSArray(contentsOfFile: path) else {
+            result(musicMs: [QQMusicModel]())
+            return
+        }
+        
+        // 3. 把字典转成模型
         var resultMs = [QQMusicModel]()
         for dic in dicArray {
-        
-            let musicM = QQMusicModel(dic: dic as! [String : AnyObject])
+            
+            let musicM = QQMusicModel(dic: dic as! [String: AnyObject])
             resultMs.append(musicM)
         }
         
-        //返回出去结果
+        
+        // 4. 返回出去
         result(musicMs: resultMs)
         
     }
+    
+    
     
 }

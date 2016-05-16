@@ -9,40 +9,40 @@
 import UIKit
 
 class QQMusicModel: NSObject {
-
-    //加载的是plist文件,所以根据文件的key配置对应的属性
+    
+    
     /** 歌曲名称 */
-    var name : String?
+    var name: String?
     
     /** 歌曲文件名称 */
-    var filename : String?
+    var filename: String?
     
     /** 歌词文件名称  */
-    var lrcname : String?
+    var lrcname: String?
     
     /** 演唱者 */
-    var singer : String?
+    var singer: String?
     
     /** 歌手头像 */
-    var singerIcon : String?
+    var singerIcon: String?
     
     /** 专辑图片 */
-    var icon : String?
+    var icon: String?
     
     override init() {
         super.init()
     }
     
-    init(dic : [String : AnyObject]) {
+    init(dic: [String: AnyObject]) {
         super.init()
         setValuesForKeysWithDictionary(dic)
+    }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
-        
     
-    }
     
     
     
