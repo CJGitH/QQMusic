@@ -30,6 +30,31 @@ class QQDetailVC: UIViewController {
 //业务逻辑
 extension QQDetailVC {
 
+    //播放按钮
+    @IBAction func playOrPause(sender: UIButton) {
+        sender.selected = !sender.selected
+        if sender.selected {
+        QQMusicOperationTool.shareInstance.playCurrentMusic()
+        }else {
+        QQMusicOperationTool.shareInstance.pauseCurrentMusic()
+        }
+        
+    }
+    
+    //上一首
+    @IBAction func preMusic() {
+        QQMusicOperationTool.shareInstance.preMusic()
+        
+    }
+    
+    //下一首
+    @IBAction func nextMusic(sender: UIButton) {
+        
+        QQMusicOperationTool.shareInstance.nextMusic()
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewOnce()

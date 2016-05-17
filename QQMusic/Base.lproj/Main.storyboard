@@ -133,14 +133,23 @@
                                         </constraints>
                                         <state key="normal" image="player_btn_play_normal"/>
                                         <state key="selected" image="player_btn_pause_normal"/>
+                                        <connections>
+                                            <action selector="playOrPause:" destination="tUR-rL-on5" eventType="touchUpInside" id="alI-us-pYW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74h-oe-7iv">
                                         <rect key="frame" x="260" y="46" width="64" height="64"/>
                                         <state key="normal" image="player_btn_next_normal"/>
+                                        <connections>
+                                            <action selector="nextMusic:" destination="tUR-rL-on5" eventType="touchUpInside" id="RP2-NC-PJC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4t-9q-9ox">
                                         <rect key="frame" x="32" y="46" width="64" height="64"/>
                                         <state key="normal" image="player_btn_pre_normal"/>
+                                        <connections>
+                                            <action selector="preMusic" destination="tUR-rL-on5" eventType="touchUpInside" id="K4H-rE-jWV"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTu-Mx-jhQ">
                                         <rect key="frame" x="8" y="9" width="36.5" height="16"/>
