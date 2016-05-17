@@ -79,6 +79,9 @@ extension QQListTVC {
         //根据数据模型,播放音乐
         QQMusicOperationTool.shareInstance.playMusic(musicM)
         
+        
+        //跳转到下一个控制器
+        performSegueWithIdentifier("listToDetail", sender: nil)
     }
     
 }
