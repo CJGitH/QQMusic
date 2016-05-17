@@ -71,6 +71,16 @@ extension QQListTVC {
         currentcell.beginAnimation(AnimatonType.Rotation)
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //拿到数据模型
+        let musicM = musicMs[indexPath.row]
+        
+        //根据数据模型,播放音乐
+        QQMusicOperationTool.shareInstance.playMusic(musicM)
+        
+    }
+    
 }
 
 // 界面搭建
