@@ -41,6 +41,13 @@ class QQDetailVC: UIViewController {
     @IBOutlet weak var foreImageView: UIImageView!
     
     
+    //歌词视图
+    lazy var lrcTVC: QQLrcTVC = {
+    
+        let tvc = QQLrcTVC()
+        return tvc
+    }()
+    
     
     var lrcView : UIView?
     
@@ -130,6 +137,18 @@ extension QQDetailVC {
         //前景图片
         foreImageView.image = UIImage(named: imageName)
         
+        //歌词数据源
+        let lrcMs = QQLrcDataTool.getLrcData(musicMessageModel.musicM?.lrcname)
+        
+        
+        addRotationAnimation()
+        
+        if musicMessageModel.isPlaying {
+        resumeRotationAnimation()
+        }else {
+        pauseRotationAnimation()
+        }
+        
     }
     
     func setUpDataTimes() -> () {
@@ -213,6 +232,31 @@ extension QQDetailVC {
 //实现代理方法
 extension QQDetailVC : UIScrollViewDelegate {
 
+    func addRotationAnimation() -> () {
+    
+        foreImageView.layer.removeAnimationForKey("rotation")
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = 0
+        animation.toValue = M_PI * 2
+        animation.duration = 30
+        animation.repeatCount = MAXFLOAT
+        
+        animation.removedOnCompletion = false
+        
+        foreImageView.layer.addAnimation(animation, forKey: "rotation")
+        
+        
+    }
+    
+    func pauseRotationAnimation() -> () {
+        foreImageView.layer.pauseAnimate()
+    }
+    
+    func resumeRotationAnimation() -> () {
+        foreImageView.layer.resumeAnimate()
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //获取滚动是X值
         //之后设置透明度

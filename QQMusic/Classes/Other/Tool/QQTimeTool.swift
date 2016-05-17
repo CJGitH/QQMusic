@@ -21,4 +21,23 @@ class QQTimeTool: NSObject {
         return resultStr
         
     }
+    
+    
+    class func getTimeInterval(formatTime: String) -> NSTimeInterval {
+        
+        //  00:00.89  -> 多少秒
+        
+        let minAndSec = formatTime.componentsSeparatedByString(":")
+        if minAndSec.count == 2 {
+            // 分钟
+            let min = NSTimeInterval(minAndSec[0]) ?? 0
+            // 秒数
+            let sec = NSTimeInterval(minAndSec[1]) ?? 0
+            return min * 60 + sec
+        }
+        
+        return 0
+        
+    }
+    
 }
