@@ -10,8 +10,27 @@ import UIKit
 
 class QQDetailVC: UIViewController {
 
+    //最里面的背景图片
+    @IBOutlet weak var backImageView: UIImageView!
+    
+    //歌曲名称
+    @IBOutlet weak var songNameLabel: UILabel!
+    
+    //歌手名称
+    @IBOutlet weak var singerNameLabel: UILabel!
+    
+    //总时长
+    @IBOutlet weak var totalTimeLabel: UILabel!
+    
+    //播放或者暂停按钮
+    @IBOutlet weak var playOrPauseBtn: UIButton!
+    
+    //已经播放时长
+    @IBOutlet weak var costTimeLabel: UILabel!
+    
     //进度条
     @IBOutlet weak var progressSlider: UISlider!
+    
     //歌词的背景图片,做动画使用
     @IBOutlet weak var lrcBackView: UIScrollView!
     
@@ -24,12 +43,20 @@ class QQDetailVC: UIViewController {
     
     
     var lrcView : UIView?
+    
+    //定时器
+    var timer: NSTimer?
 
 }
 
 //业务逻辑
 extension QQDetailVC {
 
+    //关闭
+    @IBAction func close() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     //播放按钮
     @IBAction func playOrPause(sender: UIButton) {
         sender.selected = !sender.selected
@@ -64,11 +91,72 @@ extension QQDetailVC {
     
     //布局
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
      setUpFrame()
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        addTimer()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeTimer()
+    }
+    
 }
+
+//数据展示
+extension QQDetailVC {
+
+    //更新一次
+    func setUpDataOnce() -> () {
+        
+        let musicMessageModel = QQMusicOperationTool.shareInstance.getNewMessageModel()
+        
+        //背景图片
+        let imageName = musicMessageModel.musicM?.icon ?? ""
+        backImageView.image = UIImage(named: imageName)
+        //歌词名称
+        songNameLabel.text = musicMessageModel.musicM?.name
+        //歌手名称
+        singerNameLabel.text = musicMessageModel.musicM?.singer
+        //总时长
+        totalTimeLabel.text = musicMessageModel.totalTimeFormat
+        //播放或者暂停按钮
+        
+        //前景图片
+        foreImageView.image = UIImage(named: imageName)
+        
+    }
+    
+    func setUpDataTimes() -> () {
+        
+        let musicMessageModel = QQMusicOperationTool.shareInstance.getNewMessageModel()
+        
+        costTimeLabel.text = musicMessageModel.costTimeFormat
+        progressSlider.value = Float(musicMessageModel.constTime / musicMessageModel.totalTime)
+        
+        playOrPauseBtn.selected = musicMessageModel.isPlaying
+    }
+    
+    //添加定时器
+    func addTimer() -> () {
+        timer = NSTimer(timeInterval: 1, target: self, selector: #selector(setUpDataTimes), userInfo: nil, repeats: true)
+        //添加到RunLoop中
+        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+    }
+    
+    //移除定时器
+    func removeTimer() -> () {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+}
+
 
 //界面处理
 extension QQDetailVC {

@@ -11,6 +11,26 @@ import UIKit
 class QQMusicOperationTool: NSObject {
     
     
+    private var musicMessageModel: QQMusicMessageModel = QQMusicMessageModel()
+    
+    //提供最新信息
+    func  getNewMessageModel() -> QQMusicMessageModel {
+        
+        //给属性赋值
+        musicMessageModel.musicM = musicMList?[index]
+        
+        //已经播放时长
+        musicMessageModel.constTime = tool.player?.currentTime ?? 0
+        
+        //总时长
+        musicMessageModel.totalTime = tool.player?.duration ?? 0
+        
+        // 播放状态
+        musicMessageModel.isPlaying = tool.player?.playing ?? false
+        return musicMessageModel
+    }
+    
+    
     static let shareInstance = QQMusicOperationTool()
     
     // 记录当前正在播放的索引

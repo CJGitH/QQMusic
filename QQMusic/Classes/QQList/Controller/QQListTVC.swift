@@ -70,7 +70,7 @@ extension QQListTVC {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         //开始做动画
         let currentcell = cell as! QQMusicListCell
-        currentcell.beginAnimation(AnimatonType.Rotation)
+//        currentcell.beginAnimation(AnimatonType.Rotation)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -84,6 +84,27 @@ extension QQListTVC {
         
         //跳转到下一个控制器
         performSegueWithIdentifier("listToDetail", sender: nil)
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        guard let indexPaths = tableView.indexPathsForVisibleRows else {
+        
+            return
+        }
+        
+        //计算中间一行对应的索引
+        let first = indexPaths.first?.row ?? 0
+        let last = indexPaths.last?.row ?? 0
+        
+        let middle = Int(Float(first + last) * 0.5)
+        
+        for indexPath in indexPaths {
+        
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            
+            cell?.x = CGFloat(abs(indexPath.row - middle) * 20)
+        }
     }
     
 }
