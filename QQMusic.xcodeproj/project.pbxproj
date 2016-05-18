@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7411DFC01CEB564B00F7C97B /* QQMusicMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411DFBF1CEB564B00F7C97B /* QQMusicMessageModel.swift */; };
 		7411DFC21CEB599C00F7C97B /* QQTimeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411DFC11CEB599C00F7C97B /* QQTimeTool.swift */; };
+		747185B01CEC115C00EDF4A5 /* QQImageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747185AF1CEC115C00EDF4A5 /* QQImageTool.swift */; };
 		7483607B1CEBFEDE00D54EC2 /* QQLrcLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483607A1CEBFEDE00D54EC2 /* QQLrcLabel.swift */; };
 		74D483551CE9E96900EA93E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D483541CE9E96900EA93E6 /* AppDelegate.swift */; };
 		74D4835A1CE9E96900EA93E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D483581CE9E96900EA93E6 /* Main.storyboard */; };
@@ -76,6 +77,7 @@
 /* Begin PBXFileReference section */
 		7411DFBF1CEB564B00F7C97B /* QQMusicMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMusicMessageModel.swift; sourceTree = "<group>"; };
 		7411DFC11CEB599C00F7C97B /* QQTimeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQTimeTool.swift; sourceTree = "<group>"; };
+		747185AF1CEC115C00EDF4A5 /* QQImageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQImageTool.swift; sourceTree = "<group>"; };
 		7483607A1CEBFEDE00D54EC2 /* QQLrcLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QQLrcLabel.swift; path = ../../QQList/View/QQLrcLabel.swift; sourceTree = "<group>"; };
 		74D483511CE9E96900EA93E6 /* QQMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D483541CE9E96900EA93E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../AppDelegate.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				74D483FB1CEA27BA00EA93E6 /* QQMusicTool.swift */,
 				74D483FD1CEA29BB00EA93E6 /* QQMusicOperationTool.swift */,
 				7411DFC11CEB599C00F7C97B /* QQTimeTool.swift */,
+				747185AF1CEC115C00EDF4A5 /* QQImageTool.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				74D483551CE9E96900EA93E6 /* AppDelegate.swift in Sources */,
 				74D483741CE9EB1800EA93E6 /* QQListTVC.swift in Sources */,
 				74E0E5061CEB6D5E00C4F554 /* QQLrcCell.swift in Sources */,
+				747185B01CEC115C00EDF4A5 /* QQImageTool.swift in Sources */,
 				7411DFC01CEB564B00F7C97B /* QQMusicMessageModel.swift in Sources */,
 				74E0E4FD1CEB6A4600C4F554 /* QQLrcTVC.swift in Sources */,
 			);

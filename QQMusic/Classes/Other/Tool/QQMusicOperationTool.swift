@@ -137,6 +137,16 @@ extension QQMusicOperationTool {
         
         
         
+        // 当前正在播放的歌词信息
+        // 1. 根据当前的歌词文件名称, 获取所有的歌词数据模型列表
+        let lrcMs = QQLrcDataTool.getLrcData(musicMM.musicM?.lrcname)
+        // 2. 根据列表, 以及当前的播放时间, 获取当前的歌词数据模型
+        let rowLrcM = QQLrcDataTool.getRowLrcM(musicMM.costTime, lrcMs: lrcMs)
+        
+        let lrcM = rowLrcM.lrcM
+        
+        
+        
         // 1.1 创建一个字典
         let songName = musicMM.musicM?.name ?? ""
         let singerName = musicMM.musicM?.singer ?? ""
@@ -148,7 +158,12 @@ extension QQMusicOperationTool {
             let image = UIImage(named: (musicMM.musicM?.icon)!)
             if image != nil
             {
-                artwork = MPMediaItemArtwork(image: image!)
+                
+                
+                // 绘制新图片
+                let newImage = QQImageTool.getNewImage(image!, str: lrcM.lrcStr)
+                
+                artwork = MPMediaItemArtwork(image: newImage)
             }
             
         }
@@ -190,7 +205,6 @@ extension QQMusicOperationTool {
     
     
 }
-
 
 
 
