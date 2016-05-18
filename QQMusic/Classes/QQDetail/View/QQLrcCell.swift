@@ -10,14 +10,23 @@ import UIKit
 
 class QQLrcCell: UITableViewCell {
 
-    @IBOutlet weak var lrcContentLabel: UILabel!
+    @IBOutlet weak var lrcContentLabel: QQLrcLabel!
+    
+    
+    var progress: Double = 0.0 {
+        didSet {
+            lrcContentLabel.progress = progress
+        }
+    }
     
     var lrcStr: String = "" {
         didSet {
-        
+            
             lrcContentLabel.text = lrcStr
+            
         }
     }
+    
     
     
     class func cellWithTableView(tableView: UITableView) -> QQLrcCell {

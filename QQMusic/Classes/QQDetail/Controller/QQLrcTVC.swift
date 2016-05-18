@@ -16,12 +16,29 @@ class QQLrcTVC: UITableViewController {
         }
     }
 
+    
+    var progress: Double = 0.0 {
+        didSet {
+        
+            //获得当前正在播放的cell
+            let index = NSIndexPath(forRow: scrollRow, inSection: 0)
+            let cell = tableView.cellForRowAtIndexPath(index) as? QQLrcCell
+            
+            //赋值
+            cell?.progress = progress
+        }
+    }
+    
+    
     var scrollRow: Int = 0 {
     
         didSet {
         
             if scrollRow != oldValue {
             
+                tableView.reloadRowsAtIndexPaths(tableView.indexPathsForVisibleRows!, withRowAnimation: UITableViewRowAnimation.Fade)
+                
+                
                 let indexPath = NSIndexPath(forRow: scrollRow, inSection: 0)
                 tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
                 
@@ -55,6 +72,14 @@ class QQLrcTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        let cell = QQLrcCell.cellWithTableView(tableView)
 
+        if indexPath.row == scrollRow {
+        cell.progress = progress
+        }else {
+        cell.progress = 0.0
+        }
+        
+        
+        
         let lrcM = dataSource[indexPath.row]
         
         cell.lrcStr = lrcM.lrcStr

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7411DFC01CEB564B00F7C97B /* QQMusicMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411DFBF1CEB564B00F7C97B /* QQMusicMessageModel.swift */; };
 		7411DFC21CEB599C00F7C97B /* QQTimeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411DFC11CEB599C00F7C97B /* QQTimeTool.swift */; };
+		7483607B1CEBFEDE00D54EC2 /* QQLrcLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7483607A1CEBFEDE00D54EC2 /* QQLrcLabel.swift */; };
 		74D483551CE9E96900EA93E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D483541CE9E96900EA93E6 /* AppDelegate.swift */; };
 		74D4835A1CE9E96900EA93E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D483581CE9E96900EA93E6 /* Main.storyboard */; };
 		74D4835C1CE9E96900EA93E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D4835B1CE9E96900EA93E6 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 /* Begin PBXFileReference section */
 		7411DFBF1CEB564B00F7C97B /* QQMusicMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMusicMessageModel.swift; sourceTree = "<group>"; };
 		7411DFC11CEB599C00F7C97B /* QQTimeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQTimeTool.swift; sourceTree = "<group>"; };
+		7483607A1CEBFEDE00D54EC2 /* QQLrcLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QQLrcLabel.swift; path = ../../QQList/View/QQLrcLabel.swift; sourceTree = "<group>"; };
 		74D483511CE9E96900EA93E6 /* QQMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D483541CE9E96900EA93E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../AppDelegate.swift; sourceTree = "<group>"; };
 		74D483591CE9E96900EA93E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			children = (
 				74E0E5041CEB6D5E00C4F554 /* QQLrcCell.swift */,
 				74E0E5051CEB6D5E00C4F554 /* QQLrcCell.xib */,
+				7483607A1CEBFEDE00D54EC2 /* QQLrcLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -418,6 +421,12 @@
 				TargetAttributes = {
 					74D483501CE9E96900EA93E6 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Z8QN7246A5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -502,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D483D61CE9FD0800EA93E6 /* UIView+Extension.m in Sources */,
+				7483607B1CEBFEDE00D54EC2 /* QQLrcLabel.swift in Sources */,
 				74D483FE1CEA29BB00EA93E6 /* QQMusicOperationTool.swift in Sources */,
 				74D483D91CE9FD7500EA93E6 /* QQMusicListCell.swift in Sources */,
 				74D483761CE9EB3200EA93E6 /* QQDetailVC.swift in Sources */,
@@ -632,11 +642,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QQMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.2323.QQMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QQMusic/Classes/Other/Category/QQMusic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -649,11 +661,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QQMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.2323.QQMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QQMusic/Classes/Other/Category/QQMusic-Bridging-Header.h";
 			};
 			name = Release;
