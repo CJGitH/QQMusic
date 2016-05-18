@@ -20,7 +20,7 @@ class QQMusicOperationTool: NSObject {
         musicMessageModel.musicM = musicMList?[index]
         
         //已经播放时长
-        musicMessageModel.constTime = tool.player?.currentTime ?? 0
+        musicMessageModel.costTime = tool.player?.currentTime ?? 0
         
         //总时长
         musicMessageModel.totalTime = tool.player?.duration ?? 0

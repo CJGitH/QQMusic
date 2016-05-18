@@ -11,6 +11,24 @@ import UIKit
 class QQLrcDataTool: NSObject {
     
     
+    class func getRowLrcM(currentTime: NSTimeInterval, lrcMs: [QQLrcModel]) -> (row: Int, lrcM: QQLrcModel) {
+        
+        let count = lrcMs.count
+        for i in 0..<count {
+            
+            let lrcM = lrcMs[i]
+            
+            if currentTime >= lrcM.beginTime && currentTime < lrcM.endTime {
+                return (i, lrcM)
+            }
+            
+        }
+        
+        return (0, QQLrcModel())
+        
+    }
+    
+    
     class func getLrcData(fileName: String?) -> [QQLrcModel] {
         
         // 解析歌词文件
@@ -89,3 +107,4 @@ class QQLrcDataTool: NSObject {
     }
     
 }
+

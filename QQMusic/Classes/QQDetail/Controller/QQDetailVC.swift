@@ -54,6 +54,8 @@ class QQDetailVC: UIViewController {
     //定时器
     var timer: NSTimer?
 
+    var displayLink: CADisplayLink?
+    
 }
 
 //业务逻辑
@@ -78,14 +80,14 @@ extension QQDetailVC {
     //上一首
     @IBAction func preMusic() {
         QQMusicOperationTool.shareInstance.preMusic()
-        
+        setUpDataOnce()
     }
     
     //下一首
     @IBAction func nextMusic(sender: UIButton) {
         
         QQMusicOperationTool.shareInstance.nextMusic()
-        
+         setUpDataOnce()
     }
     
     
@@ -106,11 +108,15 @@ extension QQDetailVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addTimer()
+        addDisplayLink()
+        setUpDataOnce()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         removeTimer()
+        removeDisplayLink()
+        
     }
     
 }
@@ -140,6 +146,8 @@ extension QQDetailVC {
         //歌词数据源
         let lrcMs = QQLrcDataTool.getLrcData(musicMessageModel.musicM?.lrcname)
         
+        //交给歌词展示数据
+        lrcTVC.dataSource = lrcMs
         
         addRotationAnimation()
         
@@ -156,10 +164,29 @@ extension QQDetailVC {
         let musicMessageModel = QQMusicOperationTool.shareInstance.getNewMessageModel()
         
         costTimeLabel.text = musicMessageModel.costTimeFormat
-        progressSlider.value = Float(musicMessageModel.constTime / musicMessageModel.totalTime)
+        progressSlider.value = Float(musicMessageModel.costTime / musicMessageModel.totalTime)
         
         playOrPauseBtn.selected = musicMessageModel.isPlaying
     }
+    
+    // 更新歌词(更新频率问题, 要求更新非常频繁)
+    func updateLrc() -> () {
+        
+        let  musicMessageModel = QQMusicOperationTool.shareInstance.getNewMessageModel()
+        
+        // 1. 获取到滚动的行号
+        let rowLrM = QQLrcDataTool.getRowLrcM(musicMessageModel.costTime, lrcMs: lrcTVC.dataSource)
+        
+        
+        // 2. 交给歌词展示控制器, 来滚动
+        let row = rowLrM.row
+        lrcTVC.scrollRow = row
+        
+        //给歌词赋值
+        lrcLabel.text = rowLrM.lrcM.lrcStr
+        
+    }
+
     
     //添加定时器
     func addTimer() -> () {
@@ -173,6 +200,20 @@ extension QQDetailVC {
         timer?.invalidate()
         timer = nil
     }
+    
+    func addDisplayLink() -> () {
+        
+        displayLink = CADisplayLink(target: self, selector: #selector(updateLrc))
+        
+        displayLink?.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        
+    }
+    
+    func removeDisplayLink() -> () {
+        displayLink?.invalidate()
+        displayLink = nil
+    }
+    
     
 }
 

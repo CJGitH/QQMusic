@@ -14,7 +14,7 @@ class QQMusicMessageModel: NSObject {
     var musicM: QQMusicModel?
     
     
-    var constTime: NSTimeInterval = 0
+    var costTime: NSTimeInterval = 0
     var totalTime: NSTimeInterval = 0
     var isPlaying: Bool = false
     
@@ -23,7 +23,7 @@ class QQMusicMessageModel: NSObject {
     var costTimeFormat: String {
         get {
         
-            return QQTimeTool.getFormatTime(constTime)
+            return QQTimeTool.getFormatTime(costTime)
         }
     }
     
