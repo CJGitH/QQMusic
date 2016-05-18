@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 
+let kPlayFinishNotificationName = "playFinish"
+
 class QQMusicTool: NSObject {
     
     override init() {
@@ -48,6 +50,7 @@ class QQMusicTool: NSObject {
         
         do {
             player = try AVAudioPlayer(contentsOfURL: url)
+            player?.delegate = self
         }catch {
             print(error)
             return
@@ -74,5 +77,26 @@ class QQMusicTool: NSObject {
         player?.play()
     }
     
+    
+    func seekTo(timeInterval: NSTimeInterval) -> () {
+        
+        player?.currentTime = timeInterval
+        
+        
+    }
+    
+    
+}
+
+extension QQMusicTool: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        //        print("播放完成")
+        
+        // 使用的方案是通知
+        NSNotificationCenter.defaultCenter().postNotificationName(kPlayFinishNotificationName, object: nil)
+        
+        
+    }
     
 }

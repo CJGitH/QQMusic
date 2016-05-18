@@ -55,6 +55,12 @@ class QQDetailVC: UIViewController {
     
     
     var displayLink: CADisplayLink?
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    
 }
 
 // 业务逻辑
@@ -95,6 +101,10 @@ extension QQDetailVC {
         super.viewDidLoad()
         setUpViewOnce()
         
+        
+        // 监听播放完成的通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(nextMusic), name: kPlayFinishNotificationName, object: nil)
+        
     }
     
     
@@ -119,6 +129,48 @@ extension QQDetailVC {
         removeTimer()
         removeDisplayLink()
     }
+    
+    
+    // 移除定时器
+    @IBAction func touchDown(sender: UISlider) {
+        
+        removeTimer()
+        
+    }
+    
+    // 添加定时器啊
+    // 并且, 控制当前的播放进度
+    @IBAction func touchUp(sender: UISlider) {
+        
+        addTimer()
+        
+        // 1. 计算当前时间(0-1)
+        // 总时长
+        let totalTime = QQMusicOperationTool.shareInstance.getNewMessageModel().totalTime
+        
+        let currentTime = Double(sender.value) * totalTime
+        
+        // 2. 设置当前播放进度
+        QQMusicOperationTool.shareInstance.seekTo(currentTime)
+        
+        
+    }
+    
+    
+
+    @IBAction func valueChange(sender: UISlider) {
+        
+        // 计算当前时间
+        // 1. 计算当前时间(0-1)
+        // 总时长
+        let totalTime = QQMusicOperationTool.shareInstance.getNewMessageModel().totalTime
+        
+        let currentTime = Double(sender.value) * totalTime
+        
+        costTimeLabel.text = QQTimeTool.getFormatTime(currentTime)
+        
+    }
+    
     
     
     
@@ -367,6 +419,11 @@ extension QQDetailVC: UIScrollViewDelegate {
 //运行在真机上,在后台播放时可以用
 // 远程事件处理
 extension QQDetailVC {
+    
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        nextMusic()
+        
+    }
     
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {

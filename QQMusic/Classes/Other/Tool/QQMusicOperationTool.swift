@@ -80,6 +80,11 @@ class QQMusicOperationTool: NSObject {
         
     }
     
+    func seekTo(timeInterval: NSTimeInterval) -> () {
+        tool.seekTo(timeInterval)
+    }
+    
+    
     func playCurrentMusic() -> () {
         tool.resumeCurrentMusic()
     }
