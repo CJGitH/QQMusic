@@ -54,8 +54,6 @@ class QQLrcDataTool: NSObject {
         // 1. 转换成一行一行组成的数组
         let lrcStrArray = lrcContent.componentsSeparatedByString("\n")
         
-        print(lrcStrArray)
-        
         
         var lrcMs = [QQLrcModel]()
         

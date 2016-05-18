@@ -208,7 +208,12 @@ extension QQDetailVC {
         
         lrcTVC.progress = value
         
-        QQMusicOperationTool.shareInstance.setUpLockMessage()
+        // 设置锁屏界面信息
+        // 前台, 不更新, 后台更新
+        let state = UIApplication.sharedApplication().applicationState
+        if state == .Background {
+            QQMusicOperationTool.shareInstance.setUpLockMessage()
+        }
     }
     
     

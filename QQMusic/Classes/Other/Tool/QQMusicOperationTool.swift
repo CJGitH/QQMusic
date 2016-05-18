@@ -11,6 +11,7 @@ import MediaPlayer
 
 class QQMusicOperationTool: NSObject {
     
+    var drawRow: Int = -1
     
     private var artwork: MPMediaItemArtwork?
     
@@ -127,6 +128,9 @@ extension QQMusicOperationTool {
     
     func setUpLockMessage() -> () {
         
+        
+        print("设置锁屏信息")
+        
         let musicMM = getNewMessageModel()
         
         
@@ -161,9 +165,15 @@ extension QQMusicOperationTool {
                 
                 
                 // 绘制新图片
-                let newImage = QQImageTool.getNewImage(image!, str: lrcM.lrcStr)
+                if drawRow != rowLrcM.row {
+                    drawRow = rowLrcM.row
+                    let newImage = QQImageTool.getNewImage(image!, str: lrcM.lrcStr)
+                    //                    print("绘制了新图片")
+                    artwork = MPMediaItemArtwork(image: newImage)
+                }
                 
-                artwork = MPMediaItemArtwork(image: newImage)
+                
+                
             }
             
         }
@@ -205,7 +215,6 @@ extension QQMusicOperationTool {
     
     
 }
-
 
 
 

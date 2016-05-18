@@ -9,17 +9,20 @@
 import UIKit
 
 class QQTimeTool: NSObject {
-
-    //转换时间的格式
+    
     class func getFormatTime(time: NSTimeInterval) -> String {
+        
+        // time 123
+        // 03:12
         
         let min = Int(time / 60)
         let sec = Int(time) % 60
         
-        let resultStr = String(format: "%02d:%02d", min,sec)
+        
+        let resultStr = String(format: "%02d:%02d", min, sec)
+        
         
         return resultStr
-        
     }
     
     
@@ -39,5 +42,10 @@ class QQTimeTool: NSObject {
         return 0
         
     }
+    
+    
+    
+    
+    
     
 }

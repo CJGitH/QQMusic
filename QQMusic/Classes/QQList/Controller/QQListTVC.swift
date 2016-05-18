@@ -31,7 +31,7 @@ class QQListTVC: UITableViewController {
         QQMusicDataTool.getMusicList { (musicMs) in
             
             // 展示数据
-            print(musicMs)
+            
             self.musicMs = musicMs
             
             //给播放工具类进行复制播放列表
